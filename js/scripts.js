@@ -33,3 +33,44 @@ var Tamagotchi = {
 		};
 	}
 };
+
+$(document).ready(function() {
+
+	$("form#virtual-pet-name").submit(function(event) {
+		event.preventDefault();
+
+		var myPet = Object.create(Tamagotchi);
+		var inputtedPetName = $("input#name").val();
+		myPet.initialize(inputtedPetName);
+		alert (myPet);
+
+		$("input#name").val("");
+		$(".show-name").text(inputtedPetName);
+		$(".keep-alive").show();
+
+		$("#feed").click(function() {
+			myPet.feeding();
+			alert("Food Level is now at " + myPet.foodLevel);
+			console.log(myPet.foodLevel)
+			console.log(myPet.activityLevel)
+			console.log(myPet.sleepLevel)
+		});
+
+		$("#play").click(function() {
+			myPet.playing();
+			alert("Activity Level is now at " + myPet.activityLevel);
+			console.log(myPet.foodLevel)
+			console.log(myPet.activityLevel)
+			console.log(myPet.sleepLevel)
+		})
+;		$("#sleep").click(function() {
+			myPet.sleeping();
+			alert("Sleep Level is now at " + myPet.sleepLevel);
+			console.log(myPet.foodLevel)
+			console.log(myPet.activityLevel)
+			console.log(myPet.sleepLevel)
+		});
+
+
+	});
+});
