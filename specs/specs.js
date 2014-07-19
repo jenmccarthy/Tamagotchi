@@ -9,16 +9,16 @@ describe("Tamagotchi", function() {
 			myPet.sleepLevel.should.equal(10);
 		});
 	});
-	// describe("timePasses", function() {
-	// 	it("will decrease the amount of food, sleep, and activity by one if those have not been addressed", function () {
-	// 		var myPet = Object.create(Tamagotchi);
-	// 		myPet.initialize("pickles");
-	// 		myPet.timePasses();
-	// 		myPet.foodLevel.should.equal(9);
-	// 		myPet.activityLevel.should.equal(9);
-	// 		myPet.sleepLevel.should.equal(9);
-	// 	});
-	// });
+	describe("timePasses", function() {
+		it("if left alone it will decrease the amount of food, sleep, and activity by one", function () {
+			var myPet = Object.create(Tamagotchi);
+			myPet.initialize("pickles", 9, 9, 9);
+			myPet.timePasses();
+			myPet.foodLevel.should.equal(9);
+			myPet.activityLevel.should.equal(9);
+			myPet.sleepLevel.should.equal(9);
+		});
+	});
 	// describe("feeding", function() {
 	// 	it("will increase the food level by one and decrease the sleep and activity levels by 1", function() {
 	// 		var MyPet = Object.create(Tamagotchi);
