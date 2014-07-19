@@ -1,15 +1,35 @@
 var Tamagotchi = {
-	initialize : function(name, foodLevel, activityLevel, sleepLevel) {
+	initialize : function(name) {
 		this.name = name;
-		this.foodLevel = foodLevel;
-		this.activityLevel = activityLevel;
-		this.sleepLevel = sleepLevel;
+		this.foodLevel = 10;
+		this.activityLevel = 10;
+		this.sleepLevel = 10;
 	},
 	timePasses : function() {
-		this.foodLevel === (this.foodLevel - 1);
-		this.activityLevel === (this.activityLevel - 1);
-		this.sleepLevel === (this.sleepLevel - 1);
+		this.foodLevel --;
+		this.activityLevel --;
+		this.sleepLevel --;
 	},
-
-
+	feeding : function() {
+		this.foodLevel ++;
+		this.activityLevel --;
+		this.sleepLevel --;
+	},	
+	playing : function() {
+		this.foodLevel --;
+		this.activityLevel ++;
+		this.sleepLevel --;
+	},
+	sleeping : function() {
+		this.foodLevel --;
+		this.activityLevel --;
+		this.sleepLevel ++;
+	},
+	isAlive : function() {
+		if (this.foodLevel < 1) {
+			return false;
+		} else {
+			return true;
+		};
+	}
 };
