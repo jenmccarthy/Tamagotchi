@@ -42,35 +42,39 @@ $(document).ready(function() {
 		var myPet = Object.create(Tamagotchi);
 		var inputtedPetName = $("input#name").val();
 		myPet.initialize(inputtedPetName);
-		alert (myPet);
 
 		$("input#name").val("");
 		$(".show-name").text(inputtedPetName);
 		$(".keep-alive").show();
 
+		var counter = window.setInterval(function() {myPet.timePasses();
+			if (myPet.foodLevel === 0) {
+				alert("You neglected " + inputtedPetName + ". Now he is dead!");
+				window.clearInterval(counter);
+			};
+
+		}, 30000);
+
+		    
 		$("#feed").click(function() {
 			myPet.feeding();
-			alert("Food Level is now at " + myPet.foodLevel);
-			console.log(myPet.foodLevel)
-			console.log(myPet.activityLevel)
-			console.log(myPet.sleepLevel)
+			if (myPet.foodLevel > 15) {
+				alert("You overfed " + inputtedPetName + ". Now he's dead!");
+			};
 		});
 
 		$("#play").click(function() {
 			myPet.playing();
-			alert("Activity Level is now at " + myPet.activityLevel);
-			console.log(myPet.foodLevel)
-			console.log(myPet.activityLevel)
-			console.log(myPet.sleepLevel)
-		})
-;		$("#sleep").click(function() {
-			myPet.sleeping();
-			alert("Sleep Level is now at " + myPet.sleepLevel);
-			console.log(myPet.foodLevel)
-			console.log(myPet.activityLevel)
-			console.log(myPet.sleepLevel)
+ 			if (myPet.foodLevel === 0) {
+ 				alert("You forgot to feed " + inputtedPetName + ". Now he's dead!");
+ 			};
 		});
 
-
+		$("#sleep").click(function() {
+			myPet.sleeping();
+			if (myPet.foodLevel === 0) {
+				alert("You forgot to feed " + inputtedPetName + ". Now he's dead!");
+			};
+		});
 	});
 });
